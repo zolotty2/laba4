@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LAB4.Models;
 
-public partial class ppContext : DbContext
+public partial class AppContext : DbContext
 {
-    public ppContext()
+    public AppContext()
     {
     }
 
-    public ppContext(DbContextOptions<ppContext> options)
+    public AppContext(DbContextOptions<AppContext> options)
         : base(options)
     {
     }
