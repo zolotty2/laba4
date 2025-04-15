@@ -1,6 +1,5 @@
-﻿using System.ComponentModel;
-using LAB4.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using AppContext = LAB4.Models.AppContext;
 using Type = LAB4.Models.Type;
 
@@ -71,14 +70,42 @@ namespace LAB4
             formAddType.textBoxTypes.Text = type.TypeName;
 
             DialogResult result = formAddType.ShowDialog(this);
-    
-            if (result == DialogResult.Cancel) return;  
-            type.TypeName=formAddType.textBoxTypes.Text;
-            db.Types.Add(type);
+
+            if (result == DialogResult.Cancel) return;
+            type.TypeName = formAddType.textBoxTypes.Text;
+            db.Types.Update(type);
             db.SaveChanges();
 
             MessageBox.Show("Объект изменён");
 
+            this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
+        }
+
+        private void BtnDeleteType_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTypes.SelectedRows.Count == 0) return;
+
+            DialogResult result = MessageBox.Show(
+                "Вы уверенны, что хотите удалить запись.\nВсе связанные данные будут удалены.", "",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+                );
+
+            if (result == DialogResult.OK)
+                return;
+
+            int index = dataGridViewTypes.SelectedRows[0].Index;
+            short id = 0;
+            bool converted = Int16.TryParse(dataGridViewTypes[0, index].Value.ToString(), out id);
+
+            if (!converted)
+                return;
+
+            Type type = db.Types.Find(id);
+            db.Types.Remove(type);
+            db.SaveChanges();
+
+            MessageBox.Show("Удаление завершенно");
             this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
         }
     }

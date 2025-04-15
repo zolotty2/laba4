@@ -83,6 +83,7 @@
             BtnDeleteType.TabIndex = 2;
             BtnDeleteType.Text = "Удалить";
             BtnDeleteType.UseVisualStyleBackColor = true;
+            BtnDeleteType.Click += BtnDeleteType_Click;
             // 
             // dataGridViewTypes
             // 

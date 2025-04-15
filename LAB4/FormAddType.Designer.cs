@@ -93,18 +93,18 @@
             BtnSaveChanges.DialogResult = DialogResult.OK;
             BtnSaveChanges.Location = new Point(13, 13);
             BtnSaveChanges.Name = "BtnSaveChanges";
-            BtnSaveChanges.Size = new Size(215, 35);
+            BtnSaveChanges.Size = new Size(115, 35);
             BtnSaveChanges.TabIndex = 0;
-            BtnSaveChanges.Text = "Сохранить изменения";
+            BtnSaveChanges.Text = "Сохранить";
             BtnSaveChanges.UseVisualStyleBackColor = true;
             // 
             // BtnCancel
             // 
             BtnCancel.AutoSize = true;
             BtnCancel.DialogResult = DialogResult.Cancel;
-            BtnCancel.Location = new Point(234, 13);
+            BtnCancel.Location = new Point(134, 13);
             BtnCancel.Name = "BtnCancel";
-            BtnCancel.Size = new Size(107, 35);
+            BtnCancel.Size = new Size(100, 35);
             BtnCancel.TabIndex = 1;
             BtnCancel.Text = "Отмена";
             BtnCancel.UseVisualStyleBackColor = true;
