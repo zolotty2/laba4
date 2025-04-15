@@ -41,18 +41,45 @@ namespace LAB4
             DialogResult result = formAddType.ShowDialog(this);
 
             if (result == DialogResult.Cancel)
-            {
                 return;
 
-                Type type = new Type();
-                type.TypeName=formAddType.textBoxTypes.Text;
-                db.Types.Add(type);
-                db.SaveChanges();
+            Type type = new Type();
+            type.TypeName = formAddType.textBoxTypes.Text;
+            db.Types.Add(type);
+            db.SaveChanges();
 
-                MessageBox.Show("Новый объект добавлен");
+            MessageBox.Show("Новый объект добавлен");
 
-                this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
+            this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
+
+        }
+
+        private void BtnUpdateType_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTypes.SelectedRows.Count == 0)
+                return;
+
+            int index = dataGridViewTypes.SelectedRows[0].Index;
+            short id = 0;
+            bool converted = Int16.TryParse(dataGridViewTypes[0, index].Value.ToString(), out id);
+            if (!converted)
+            {
+                return;
             }
+            Type type = db.Types.Find(id);
+            FormAddType formAddType = new();
+            formAddType.textBoxTypes.Text = type.TypeName;
+
+            DialogResult result = formAddType.ShowDialog(this);
+    
+            if (result == DialogResult.Cancel) return;  
+            type.TypeName=formAddType.textBoxTypes.Text;
+            db.Types.Add(type);
+            db.SaveChanges();
+
+            MessageBox.Show("Объект изменён");
+
+            this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
         }
     }
 }

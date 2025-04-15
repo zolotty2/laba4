@@ -72,6 +72,7 @@
             BtnUpdateType.TabIndex = 1;
             BtnUpdateType.Text = "Редактировать";
             BtnUpdateType.UseVisualStyleBackColor = true;
+            BtnUpdateType.Click += BtnUpdateType_Click;
             // 
             // BtnDeleteType
             // 

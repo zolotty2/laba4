@@ -35,6 +35,7 @@
             // 
             btnTypes.AutoSize = true;
             btnTypes.BackColor = SystemColors.ButtonFace;
+            btnTypes.Font = new Font("Segoe UI", 14F);
             btnTypes.Location = new Point(12, 12);
             btnTypes.Name = "btnTypes";
             btnTypes.Size = new Size(328, 36);
@@ -51,7 +52,7 @@
             ClientSize = new Size(1143, 630);
             Controls.Add(btnTypes);
             Font = new Font("Times New Roman", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "FormMain";
             Text = "Главная Форма";
             ResumeLayout(false);

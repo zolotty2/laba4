@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panelFill = new Panel();
             textBoxTypes = new TextBox();
             labelType = new Label();
             flowLayoutPanelBottom = new FlowLayoutPanel();
             BtnSaveChanges = new Button();
             BtnCancel = new Button();
+            errorProvider = new ErrorProvider(components);
             panelFill.SuspendLayout();
             flowLayoutPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // panelFill
@@ -47,7 +50,7 @@
             panelFill.Location = new Point(0, 0);
             panelFill.Name = "panelFill";
             panelFill.Padding = new Padding(10);
-            panelFill.Size = new Size(448, 78);
+            panelFill.Size = new Size(526, 78);
             panelFill.TabIndex = 0;
             // 
             // textBoxTypes
@@ -55,9 +58,10 @@
             textBoxTypes.Dock = DockStyle.Top;
             textBoxTypes.Location = new Point(10, 35);
             textBoxTypes.Name = "textBoxTypes";
-            textBoxTypes.Size = new Size(428, 32);
-            textBoxTypes.TabIndex = 2;
-            textBoxTypes.TextChanged += textBox1_TextChanged;
+            textBoxTypes.Size = new Size(506, 32);
+            textBoxTypes.TabIndex = 1;
+            textBoxTypes.TextChanged += textBoxType_TextChanged;
+            textBoxTypes.Validating += nameBox_Validating;
             // 
             // labelType
             // 
@@ -67,7 +71,7 @@
             labelType.Margin = new Padding(3, 15, 3, 0);
             labelType.Name = "labelType";
             labelType.Size = new Size(104, 25);
-            labelType.TabIndex = 1;
+            labelType.TabIndex = 0;
             labelType.Text = "Тип аниме";
             // 
             // flowLayoutPanelBottom
@@ -80,7 +84,7 @@
             flowLayoutPanelBottom.Location = new Point(0, 78);
             flowLayoutPanelBottom.Name = "flowLayoutPanelBottom";
             flowLayoutPanelBottom.Padding = new Padding(10);
-            flowLayoutPanelBottom.Size = new Size(448, 61);
+            flowLayoutPanelBottom.Size = new Size(526, 61);
             flowLayoutPanelBottom.TabIndex = 0;
             // 
             // BtnSaveChanges
@@ -105,11 +109,15 @@
             BtnCancel.Text = "Отмена";
             BtnCancel.UseVisualStyleBackColor = true;
             // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
+            // 
             // FormAddType
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(448, 139);
+            ClientSize = new Size(526, 139);
             Controls.Add(panelFill);
             Controls.Add(flowLayoutPanelBottom);
             Font = new Font("Segoe UI", 14F);
@@ -121,6 +129,7 @@
             panelFill.PerformLayout();
             flowLayoutPanelBottom.ResumeLayout(false);
             flowLayoutPanelBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,5 +142,6 @@
         private Button BtnSaveChanges;
         private Button BtnCancel;
         protected internal TextBox textBoxTypes;
+        private ErrorProvider errorProvider;
     }
 }
