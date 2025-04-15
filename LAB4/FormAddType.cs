@@ -13,6 +13,7 @@ namespace LAB4
     public partial class FormAddType : Form
     {
         public FormAddType()
+
         {
             InitializeComponent();
         }
