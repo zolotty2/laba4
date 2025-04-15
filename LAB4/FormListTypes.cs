@@ -13,14 +13,14 @@ namespace LAB4
         {
             InitializeComponent();
         }
-        
+
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             this.db = new AppContext();
             this.db.Types.Load();
-            this.dataGridViewTypes.DataSource =this.db.Types.Local.OrderBy(o=>o.TypeName).ToList();
+            this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
 
             dataGridViewTypes.Columns["id"].Visible = false;
             dataGridViewTypes.Columns["AnimeTitles"].Visible = false;
@@ -32,7 +32,7 @@ namespace LAB4
         {
             base.OnClosing(e);
             this.db?.Dispose();
-            this.db = null; 
+            this.db = null;
 
         }
         private void BtnAddType_Click(object sender, EventArgs e)
@@ -43,10 +43,16 @@ namespace LAB4
             if (result == DialogResult.Cancel)
             {
                 return;
-            Type type = new Type();
-                type.TypeName
+
+                Type type = new Type();
+                type.TypeName=formAddType.textBoxTypes.Text;
+                db.Types.Add(type);
+                db.SaveChanges();
+
+                MessageBox.Show("Новый объект добавлен");
+
+                this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
             }
-            
         }
     }
 }

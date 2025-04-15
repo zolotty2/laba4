@@ -14,4 +14,5 @@ public partial class TitlesGenre
     public virtual AnimeTitle AnimeTitle { get; set; } = null!;
 
     public virtual Genre Genre { get; set; } = null!;
+
 }
