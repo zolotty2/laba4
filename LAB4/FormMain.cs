@@ -12,5 +12,22 @@ namespace LAB4
             FormListTypes formListTypes = new FormListTypes();
             formListTypes.Show();
         }
+
+        private void BtnGenres_Click(object sender, EventArgs e)
+        {
+            FormGenresList formGenresList = new FormGenresList();
+            formGenresList.Show();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnStatus_Click(object sender, EventArgs e)
+        {
+            FormStatusList formStatusList = new FormStatusList();
+            formStatusList.Show();
+        }
     }
 }

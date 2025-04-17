@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LAB4
 {
-    public partial class FormAddType : Form
+    public partial class FormAddStatus : Form
     {
-        public FormAddType()
+        public FormAddStatus()
 
         {
             InitializeComponent();
@@ -27,12 +27,12 @@ namespace LAB4
         {
             if (String.IsNullOrEmpty(textBoxStatus.Text))
             {
-                errorProvider.SetError(textBoxStatus, "Поле не может быть пустым");
+                errorProvider1.SetError(textBoxStatus, "Поле не может быть пустым");
                 BtnSaveChanges.Enabled = false;
             }
             else
             {
-                errorProvider.Clear();
+                errorProvider1.Clear();
                 BtnSaveChanges.Enabled = true;
             }
         }
@@ -40,14 +40,19 @@ namespace LAB4
         {
             if (String.IsNullOrEmpty(textBoxStatus.Text))
             {
-                errorProvider.SetError(textBoxStatus, "Поле не может быть пустым");
+                errorProvider1.SetError(textBoxStatus, "Поле не может быть пустым");
                 BtnSaveChanges.Enabled = false;
             }
             else
             {
-                errorProvider.Clear();
-                BtnSaveChanges.Enabled = true ;
+                errorProvider1.Clear();
+                BtnSaveChanges.Enabled = true;
             }
+        }
+
+        private void FormAddStatus_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

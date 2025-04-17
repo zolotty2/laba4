@@ -10,43 +10,41 @@ using System.Windows.Forms;
 
 namespace LAB4
 {
-    public partial class FormAddType : Form
+    public partial class FormAddGenre : Form
     {
-        public FormAddType()
-
+        public FormAddGenre()
         {
             InitializeComponent();
         }
 
-        private void FormAddType_Load(object sender, EventArgs e)
+        private void FormAddGenre_Load(object sender, EventArgs e)
         {
 
         }
-
         private void textBoxType_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxStatus.Text))
+            if (String.IsNullOrEmpty(textBoxGenres.Text))
             {
-                errorProvider.SetError(textBoxStatus, "Поле не может быть пустым");
+                errorProvider1.SetError(textBoxGenres, "Поле не может быть пустым");
                 BtnSaveChanges.Enabled = false;
             }
             else
             {
-                errorProvider.Clear();
+                errorProvider1.Clear();
                 BtnSaveChanges.Enabled = true;
             }
         }
         private void nameBox_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxStatus.Text))
+            if (String.IsNullOrEmpty(textBoxGenres.Text))
             {
-                errorProvider.SetError(textBoxStatus, "Поле не может быть пустым");
+                errorProvider1.SetError(textBoxGenres, "Поле не может быть пустым");
                 BtnSaveChanges.Enabled = false;
             }
             else
             {
-                errorProvider.Clear();
-                BtnSaveChanges.Enabled = true ;
+                errorProvider1.Clear();
+                BtnSaveChanges.Enabled = true;
             }
         }
     }

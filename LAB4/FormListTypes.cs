@@ -43,7 +43,7 @@ namespace LAB4
                 return;
 
             Type type = new Type();
-            type.TypeName = formAddType.textBoxTypes.Text;
+            type.TypeName = formAddType.textBoxStatus.Text;
             db.Types.Add(type);
             db.SaveChanges();
 
@@ -67,12 +67,12 @@ namespace LAB4
             }
             Type type = db.Types.Find(id);
             FormAddType formAddType = new();
-            formAddType.textBoxTypes.Text = type.TypeName;
+            formAddType.textBoxStatus.Text = type.TypeName;
 
             DialogResult result = formAddType.ShowDialog(this);
 
             if (result == DialogResult.Cancel) return;
-            type.TypeName = formAddType.textBoxTypes.Text;
+            type.TypeName = formAddType.textBoxStatus.Text;
             db.Types.Update(type);
             db.SaveChanges();
 
@@ -107,6 +107,11 @@ namespace LAB4
 
             MessageBox.Show("Удаление завершенно");
             this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
+        }
+
+        private void FormListTypes_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
