@@ -7,15 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Windows.Forms.VisualStyles;
+using AppContext = LAB4.Models.AppContext;
 namespace LAB4
 {
     public partial class FormAddStatus : Form
     {
+        private AppContext db;
         public FormAddStatus()
 
         {
             InitializeComponent();
+            this.db = new AppContext();
         }
 
         private void FormAddType_Load(object sender, EventArgs e)
@@ -34,6 +37,26 @@ namespace LAB4
             {
                 errorProvider1.Clear();
                 BtnSaveChanges.Enabled = true;
+            }
+            FormAddStatus formAddStatus = new FormAddStatus();
+            string newStatusAnime = textBoxStatus.Text;//сохраняем текст в newStatusAnime
+
+            bool exists = db.Statuses.Any(t => t.StatusName == newStatusAnime);
+            //сраваниваем newStatusAnime с бд если есть совпадения то true
+
+
+
+            if (exists)
+            {
+                BtnSaveChanges.Enabled = false;//уходим в ошибку 
+                errorProvider1.SetError(textBoxStatus, "Поле должно быть уникальным");
+
+            }
+            else
+            {
+                errorProvider1.Clear();
+                BtnSaveChanges.Enabled = true;//пропускаем
+
             }
         }
         private void nameBox_Validating(object sender, CancelEventArgs e)

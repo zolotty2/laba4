@@ -34,7 +34,7 @@ namespace LAB4
                 return;
 
             Genre genre = new Genre();
-            genre.GenreName = formAddGenre.textBoxGenres.Text;
+            genre.GenreName = formAddGenre.textBoxGenre.Text;
             db.Genres.Add(genre);
             db.SaveChanges();
 
@@ -64,12 +64,12 @@ namespace LAB4
             }
             Genre genre = db.Genres.Find(id);
             FormAddGenre formAddGenre = new();
-            formAddGenre.textBoxGenres.Text = genre.GenreName;
+            formAddGenre.textBoxGenre.Text = genre.GenreName;
 
             DialogResult result = formAddGenre.ShowDialog(this);
 
             if (result == DialogResult.Cancel) return;
-            genre.GenreName = formAddGenre.textBoxGenres.Text;
+            genre.GenreName = formAddGenre.textBoxGenre.Text;
             db.Genres.Update(genre);
             db.SaveChanges();
 

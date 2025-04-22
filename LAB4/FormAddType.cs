@@ -7,23 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using AppContext = LAB4.Models.AppContext;
 namespace LAB4
 {
-    public partial class FormAddType : Form
+public partial class FormAddType : Form
+{
+    private AppContext db;
+    public FormAddType()
+
     {
-        public FormAddType()
+        InitializeComponent();
+        this.db = new AppContext();
+    }
 
-        {
-            InitializeComponent();
-        }
+    private void FormAddType_Load(object sender, EventArgs e)
+    {
 
-        private void FormAddType_Load(object sender, EventArgs e)
-        {
+    }
 
-        }
-
-        private void textBoxType_TextChanged(object sender, EventArgs e)
+    private void textBoxType_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBoxStatus.Text))
             {
@@ -35,19 +37,42 @@ namespace LAB4
                 errorProvider.Clear();
                 BtnSaveChanges.Enabled = true;
             }
-        }
-        private void nameBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (String.IsNullOrEmpty(textBoxStatus.Text))
+            FormAddType formAddType = new FormAddType();
+            string newTypeAnime = textBoxStatus.Text;//сохраняем текст в newStatusAnime
+
+            bool exists = db.Types.Any(t => t.TypeName == newTypeAnime);
+            //сраваниваем newStatusAnime с бд если есть совпадения то true
+
+
+
+            if (exists)
             {
-                errorProvider.SetError(textBoxStatus, "Поле не может быть пустым");
-                BtnSaveChanges.Enabled = false;
+                BtnSaveChanges.Enabled = false;//уходим в ошибку 
+                errorProvider.SetError(textBoxStatus, "Поле должно быть уникальным");
+
             }
             else
             {
                 errorProvider.Clear();
-                BtnSaveChanges.Enabled = true ;
+                BtnSaveChanges.Enabled = true;//пропускаем
+
             }
         }
+    private void nameBox_Validating(object sender, CancelEventArgs e)
+    {
+        if (String.IsNullOrEmpty(textBoxStatus.Text))
+        {
+            errorProvider.SetError(textBoxStatus, "Поле не может быть пустым");
+            BtnSaveChanges.Enabled = false;
+        }
+        else
+        {
+            errorProvider.Clear();
+            BtnSaveChanges.Enabled = true;
+        }
+    }
+            
     }
 }
+
+

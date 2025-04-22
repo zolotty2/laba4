@@ -1,31 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
+using AppContext = LAB4.Models.AppContext;
 
 namespace LAB4
 {
     public partial class FormAddGenre : Form
     {
+        private AppContext db;
+
         public FormAddGenre()
         {
             InitializeComponent();
+            this.db = new AppContext();
         }
 
-        private void FormAddGenre_Load(object sender, EventArgs e)
+        private void TextBoxGenre_TextChanged(object sender, EventArgs e)
         {
+            FormAddGenre formAddGenre = new FormAddGenre();
+            string newGenreAnime = textBoxGenre.Text;//сохраняем текст в newStatusAnime
 
-        }
-        private void textBoxType_TextChanged(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(textBoxGenres.Text))
+            bool exists = db.Genres.Any(t => t.GenreName == newGenreAnime);
+
+            if (exists)
             {
-                errorProvider1.SetError(textBoxGenres, "Поле не может быть пустым");
+                BtnSaveChanges.Enabled = false;//уходим в ошибку 
+                errorProvider1.SetError(textBoxGenre, "Поле должно быть уникальным");
+
+            }
+            else
+            {
+                errorProvider1.Clear();
+                BtnSaveChanges.Enabled = true;//пропускаем
+
+            }
+
+            if (String.IsNullOrEmpty(textBoxGenre.Text))
+            {
+                errorProvider1.SetError(textBoxGenre, "Поле не может быть пустым");
                 BtnSaveChanges.Enabled = false;
             }
             else
@@ -34,11 +44,30 @@ namespace LAB4
                 BtnSaveChanges.Enabled = true;
             }
         }
-        private void nameBox_Validating(object sender, CancelEventArgs e)
+
+        private void TextBoxGenre_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxGenres.Text))
+            FormAddGenre formAddGenre = new FormAddGenre();
+            string newGenreAnime = textBoxGenre.Text;//сохраняем текст в newStatusAnime
+
+            bool exists = db.Genres.Any(t => t.GenreName == newGenreAnime);
+
+            if (exists)
             {
-                errorProvider1.SetError(textBoxGenres, "Поле не может быть пустым");
+                BtnSaveChanges.Enabled = false;//уходим в ошибку 
+                errorProvider1.SetError(textBoxGenre, "Поле должно быть уникальным");
+
+            }
+            else
+            {
+                errorProvider1.Clear();
+                BtnSaveChanges.Enabled = true;//пропускаем
+
+            }
+
+            if (String.IsNullOrEmpty(textBoxGenre.Text))
+            {
+                errorProvider1.SetError(textBoxGenre, "Поле не может быть пустым");
                 BtnSaveChanges.Enabled = false;
             }
             else
@@ -46,6 +75,6 @@ namespace LAB4
                 errorProvider1.Clear();
                 BtnSaveChanges.Enabled = true;
             }
-        }
+        }        
     }
 }

@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panelFill = new Panel();
-            textBoxGenres = new TextBox();
+            textBoxGenre = new TextBox();
             labelGenre = new Label();
             flowLayoutPanelBottom = new FlowLayoutPanel();
             BtnSaveChanges = new Button();
@@ -44,7 +44,7 @@
             // panelFill
             // 
             panelFill.BackColor = Color.White;
-            panelFill.Controls.Add(textBoxGenres);
+            panelFill.Controls.Add(textBoxGenre);
             panelFill.Controls.Add(labelGenre);
             panelFill.Dock = DockStyle.Fill;
             panelFill.Location = new Point(0, 0);
@@ -53,16 +53,16 @@
             panelFill.Size = new Size(594, 92);
             panelFill.TabIndex = 1;
             // 
-            // textBoxGenres
+            // textBoxGenre
             // 
-            textBoxGenres.Dock = DockStyle.Top;
-            textBoxGenres.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBoxGenres.Location = new Point(10, 35);
-            textBoxGenres.Name = "textBoxGenres";
-            textBoxGenres.Size = new Size(574, 33);
-            textBoxGenres.TabIndex = 1;
-            textBoxGenres.TextChanged += textBoxType_TextChanged;
-            textBoxGenres.Validating += nameBox_Validating;
+            textBoxGenre.Dock = DockStyle.Top;
+            textBoxGenre.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBoxGenre.Location = new Point(10, 35);
+            textBoxGenre.Name = "textBoxGenre";
+            textBoxGenre.Size = new Size(574, 33);
+            textBoxGenre.TabIndex = 1;
+            textBoxGenre.TextChanged += TextBoxGenre_TextChanged;
+            textBoxGenre.Validating += TextBoxGenre_Validating;
             // 
             // labelGenre
             // 
@@ -100,7 +100,6 @@
             BtnSaveChanges.TabIndex = 0;
             BtnSaveChanges.Text = "Сохранить";
             BtnSaveChanges.UseVisualStyleBackColor = true;
-            BtnSaveChanges.Click += textBoxType_TextChanged;
             // 
             // BtnCancel
             // 
@@ -127,7 +126,6 @@
             Controls.Add(flowLayoutPanelBottom);
             Name = "FormAddGenre";
             Text = "FormAddGenre";
-            Load += FormAddGenre_Load;
             panelFill.ResumeLayout(false);
             panelFill.PerformLayout();
             flowLayoutPanelBottom.ResumeLayout(false);
@@ -140,7 +138,7 @@
         #endregion
 
         private Panel panelFill;
-        protected internal TextBox textBoxGenres;
+        protected internal TextBox textBoxGenre;
         private Label labelGenre;
         private FlowLayoutPanel flowLayoutPanelBottom;
         private Button BtnSaveChanges;
